@@ -1,6 +1,88 @@
+//global variables
+var randomNumber = 0,
+    guessNum = 0,
+    userGuess = $('#userGuess');
+
+//random number generator
+
+function newRandomNumber(){ 
+    randomNumber = Math.floor((Math.random()*100)+1);        }
+
+//compare user generated number
+
+function compareNumber(){
+    
+    var numberDistance = Math.abs(randomNumber - userGuess);
+    
+    if(numberDistance > 100){
+        
+        $('#feedback').html('Please enter a number from 1-100');
+        
+    } else if (numberDistance >= 75 && numberDistance <= 100) {
+        $('#feedback').html('Extremely Cold');
+        
+    } else if ( numberDistance >= 50 && numberDistance <= 74) {
+        $('#feedback').html('Very Cold');
+        
+    } else if (numberDistance >= 25 && numberDistance <= 49) {
+        $('#feedback').html('Cold');
+        
+    } else if (numberDistance >= 15 && numberDistance <= 24){
+        $('#feedback').html('Warm');
+        
+    } else if (numberDistance >= 10 && numberDistance <= 14){
+        $('#feedback').html('Hot');
+    
+    } else if (numberDistance >= 5 && numberDistance <= 9) {
+        
+        $('#feedback').html('Extremely Hot');
+        
+    } else if (numberDistance == 0 ) {
+        
+        $('#feedback').html('You Got It!');
+        
+    }
+    
+}
+
+//Count Increase
+
+function guessIncrease(){
+    
+    guessNum++;
+    $('#count').html(guessNum);
+}
+
+//Add to guess list
+
+function addGuess(){
+    
+    $('#guessList').append('<li>'+userGuess+'</li>');
+}
+
+//User val reset
+
+function userNumReset(){
+    
+    $('#userGuess').val('').focus();
+}
 
 $(document).ready(function(){
-	
+    //Call random number function
+        newRandomNumber();
+    
+    //user generated number
+       
+	$('#guessButton').on('click', function(){
+         event.preventDefault();
+         userGuess = parseInt($('#userGuess').val());
+         console.log(userGuess);   
+         compareNumber();
+         guessIncrease();
+         addGuess();
+         userNumReset();
+    });
+        
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
     	$(".overlay").fadeIn(1000);
