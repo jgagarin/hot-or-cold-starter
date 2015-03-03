@@ -67,11 +67,29 @@ function userNumReset(){
     $('#userGuess').val('').focus();
 }
 
+//Number of guesses reset
+
+function guessReset(){
+    $('#count').html('0');   
+}
+
+//Guess list reset
+
+function guessListReset(){
+    $('#guessList').html('');
+}
+
+//Reset feedback
+
+function feedbackReset(){
+    $('#feedback').html('Make your Guess!');   
+}
+
 $(document).ready(function(){
     //Call random number function
         newRandomNumber();
     
-    //user generated number
+    //user generated number and guess click
        
 	$('#guessButton').on('click', function(){
          event.preventDefault();
@@ -81,6 +99,16 @@ $(document).ready(function(){
          guessIncrease();
          addGuess();
          userNumReset();
+    });
+    
+    //new game setup
+    $('.new').on('click',function(){
+       event.preventDefault();
+        newRandomNumber();
+        userNumReset();
+        guessReset();
+        guessListReset();
+        feedbackReset();
     });
         
 	/*--- Display information modal box ---*/
