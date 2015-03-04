@@ -14,7 +14,7 @@ function compareNumber(){
     
     var numberDistance = Math.abs(randomNumber - userGuess);
     
-    if(numberDistance > 100){
+    if( userGuess > 100 || userGuess == NaN){
         
         $('#feedback').html('Please enter a number from 1-100');
         
