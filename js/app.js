@@ -53,6 +53,12 @@ function guessIncrease(){
     $('#count').html(guessNum);
 }
 
+//Guess increase reset
+
+function guessIncreaseReset(){
+    guessNum = 0;
+}
+
 //Add to guess list
 
 function addGuess(){
@@ -107,6 +113,7 @@ $(document).ready(function(){
         newRandomNumber();
         userNumReset();
         guessReset();
+        guessIncreaseReset();
         guessListReset();
         feedbackReset();
     });
